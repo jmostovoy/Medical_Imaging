@@ -1,0 +1,25 @@
+VERSION BUILD=9030808 RECORDER=FX
+TAB T=1
+SET !ERRORIGNORE YES
+TAG POS=1 TYPE=INPUT:IMAGE FORM=ID:aspnetForm ATTR=ID:ctl00_ctl00_ContentPlaceMain_Content_ExamGrid1_gvExams_ctl02_DownloadArchiveButton
+TAG POS=1 TYPE=INPUT:IMAGE FORM=ID:aspnetForm ATTR=ID:ctl00_ctl00_ContentPlaceMain_Content_ExamGrid1_gvExams_ctl03_DownloadArchiveButton
+TAG POS=1 TYPE=INPUT:IMAGE FORM=ID:aspnetForm ATTR=ID:ctl00_ctl00_ContentPlaceMain_Content_ExamGrid1_gvExams_ctl04_DownloadArchiveButton
+TAG POS=1 TYPE=INPUT:IMAGE FORM=ID:aspnetForm ATTR=ID:ctl00_ctl00_ContentPlaceMain_Content_ExamGrid1_gvExams_ctl05_DownloadArchiveButton
+TAG POS=1 TYPE=INPUT:IMAGE FORM=ID:aspnetForm ATTR=ID:ctl00_ctl00_ContentPlaceMain_Content_ExamGrid1_gvExams_ctl06_DownloadArchiveButton
+TAG POS=1 TYPE=INPUT:IMAGE FORM=ID:aspnetForm ATTR=ID:ctl00_ctl00_ContentPlaceMain_Content_ExamGrid1_gvExams_ctl07_DownloadArchiveButton
+TAG POS=1 TYPE=INPUT:IMAGE FORM=ID:aspnetForm ATTR=ID:ctl00_ctl00_ContentPlaceMain_Content_ExamGrid1_gvExams_ctl08_DownloadArchiveButton
+TAG POS=1 TYPE=INPUT:IMAGE FORM=ID:aspnetForm ATTR=ID:ctl00_ctl00_ContentPlaceMain_Content_ExamGrid1_gvExams_ctl09_DownloadArchiveButton
+TAG POS=1 TYPE=INPUT:IMAGE FORM=ID:aspnetForm ATTR=ID:ctl00_ctl00_ContentPlaceMain_Content_ExamGrid1_gvExams_ctl10_DownloadArchiveButton
+TAG POS=1 TYPE=INPUT:IMAGE FORM=ID:aspnetForm ATTR=ID:ctl00_ctl00_ContentPlaceMain_Content_ExamGrid1_gvExams_ctl11_DownloadArchiveButton
+TAG POS=1 TYPE=INPUT:IMAGE FORM=ID:aspnetForm ATTR=ID:ctl00_ctl00_ContentPlaceMain_Content_ExamGrid1_gvExams_ctl12_DownloadArchiveButton
+TAG POS=1 TYPE=INPUT:IMAGE FORM=ID:aspnetForm ATTR=ID:ctl00_ctl00_ContentPlaceMain_Content_ExamGrid1_gvExams_ctl13_DownloadArchiveButton
+TAG POS=1 TYPE=INPUT:IMAGE FORM=ID:aspnetForm ATTR=ID:ctl00_ctl00_ContentPlaceMain_Content_ExamGrid1_gvExams_ctl14_DownloadArchiveButton
+TAG POS=1 TYPE=INPUT:IMAGE FORM=ID:aspnetForm ATTR=ID:ctl00_ctl00_ContentPlaceMain_Content_ExamGrid1_gvExams_ctl15_DownloadArchiveButton
+TAG POS=1 TYPE=INPUT:IMAGE FORM=ID:aspnetForm ATTR=ID:ctl00_ctl00_ContentPlaceMain_Content_ExamGrid1_gvExams_ctl16_DownloadArchiveButton
+TAG POS=1 TYPE=INPUT:IMAGE FORM=ID:aspnetForm ATTR=ID:ctl00_ctl00_ContentPlaceMain_Content_ExamGrid1_gvExams_ctl17_DownloadArchiveButton
+TAG POS=1 TYPE=INPUT:IMAGE FORM=ID:aspnetForm ATTR=ID:ctl00_ctl00_ContentPlaceMain_Content_ExamGrid1_gvExams_ctl18_DownloadArchiveButton
+TAG POS=1 TYPE=INPUT:IMAGE FORM=ID:aspnetForm ATTR=ID:ctl00_ctl00_ContentPlaceMain_Content_ExamGrid1_gvExams_ctl19_DownloadArchiveButton
+TAG POS=1 TYPE=INPUT:IMAGE FORM=ID:aspnetForm ATTR=ID:ctl00_ctl00_ContentPlaceMain_Content_ExamGrid1_gvExams_ctl20_DownloadArchiveButton
+TAG POS=1 TYPE=INPUT:IMAGE FORM=ID:aspnetForm ATTR=ID:ctl00_ctl00_ContentPlaceMain_Content_ExamGrid1_gvExams_ctl21_DownloadArchiveButton
+TAG POS=1 TYPE=SELECT FORM=ID:aspnetForm ATTR=ID:ctl00_ctl00_ContentPlaceMain_Content_ExamGrid1_Pager_ddlPages CONTENT=%{{!LOOP}}
+WAIT SECONDS=3
