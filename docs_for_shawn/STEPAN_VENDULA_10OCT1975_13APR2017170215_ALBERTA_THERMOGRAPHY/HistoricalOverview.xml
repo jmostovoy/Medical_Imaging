@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<HistoricalOverview xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <FamilyHistory>
+    <Mother>false</Mother>
+    <MaternalGrandmother>true</MaternalGrandmother>
+    <Sister>false</Sister>
+    <Daughter>false</Daughter>
+    <Aunt>false</Aunt>
+  </FamilyHistory>
+  <DiagnosedBrConditions>
+    <BreastCancer>false</BreastCancer>
+    <Fibrocystic>false</Fibrocystic>
+    <Cystic>true</Cystic>
+    <Mastitis>false</Mastitis>
+  </DiagnosedBrConditions>
+  <BreastUltrasound>
+    <Date>2016-12-01T00:00:00</Date>
+    <RightBreast>Normal</RightBreast>
+    <LeftBreast>Normal</LeftBreast>
+  </BreastUltrasound>
+</HistoricalOverview>

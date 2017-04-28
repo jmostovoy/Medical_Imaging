@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<HistoricalOverview xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Thermogram>
+    <Date>2016-07-01T00:00:00</Date>
+    <RightBreast>
+      <Diagnose>HighRiskOrRatingTH</Diagnose>
+      <TH>0</TH>
+    </RightBreast>
+    <LeftBreast>
+      <Diagnose>HighRiskOrRatingTH</Diagnose>
+      <TH>0</TH>
+    </LeftBreast>
+  </Thermogram>
+  <BreastUltrasound>
+    <Date>2016-11-01T00:00:00</Date>
+    <RightBreast>Normal</RightBreast>
+    <LeftBreast>Normal</LeftBreast>
+  </BreastUltrasound>
+  <BreastBiopsies>
+    <Right>false</Right>
+    <Left>true</Left>
+    <Date>1995-04-01T00:00:00</Date>
+    <Diagnose>Positive</Diagnose>
+  </BreastBiopsies>
+  <BreastSurgeries>
+    <Lumpectomy>
+      <Right>false</Right>
+      <Left>true</Left>
+      <Date>1995-04-01T00:00:00</Date>
+    </Lumpectomy>
+    <Implants>false</Implants>
+    <Reduction>false</Reduction>
+    <Lift>false</Lift>
+    <DateofIRL>0001-01-01T00:00:00</DateofIRL>
+  </BreastSurgeries>
+</HistoricalOverview>
