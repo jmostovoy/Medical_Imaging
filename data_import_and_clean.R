@@ -1,4 +1,4 @@
-#Thermal Images
+#Thermal Images Work
 
 #Preamble
 library(EBImage)
