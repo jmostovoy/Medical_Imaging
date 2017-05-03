@@ -12,6 +12,8 @@ install.packages("e1071")
 install.packages("devtools")
 install.packages("imager")
 install.packages("ggplot")
+install.packages("shiny")
+install.packages('rsconnect')
 library(rgdal)
 library(raster)
 library(caret)
@@ -21,6 +23,7 @@ library(EBImage)
 library(PET)
 library(devtools)
 library(imager)
+library(shiny)
 setwd("~/Documents/Medical_Imaging")
 options(EBImage.display = "raster")
 devtools::install_github("rstudio/tensorflow")
@@ -35,7 +38,7 @@ devtools::install_github("dahtah/imager")
 library(purrr)
 parrots <- load.example("parrots")
 plot(parrots)
-
+runExample("01_hello")
 
 
 
@@ -195,5 +198,7 @@ writeImage(img, "sample.jpeg", quality = 100)
 files = list.files(pattern = "*common_part*")
 #Show said files and their size
 data.frame(row.names=files, size=file.size(files))
+
+
 
 

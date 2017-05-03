@@ -46,7 +46,7 @@ plot(nblobs,main="Noisy blobs")
 #Summarized commands:
 get.centers <- function(im,thr="99%")
 {
-  dt <- imhessian(im) %$% { xx*yy - xy^2 } %>% threshold(thr) %>% label
+  dt <- imhessian(im) %$% { -xx*yy + xy^2 } %>% threshold(thr) %>% label
   as.data.frame(dt) %>% subset(value>0) %>% dplyr::group_by(value) %>% dplyr::summarise(mx=mean(x),my=mean(y))
 }
 
@@ -106,6 +106,7 @@ p+scale_fill_gradient(low="black",high="white")+scale_x_continuous(expand=c(0,0)
 #Example w/ Pixsets
 
 im <- load.image("0101_baseline_anterior.jpg") %>% grayscale
+im2 <-load.image("0101_baseline_anterior2.jpg") %>% grayscale
 #Select pixels with high luminance
 px <- im > .3 & (Xc(img) %inr% c(26,615)) & (Yc(img) %inr% c(41,440))
 
@@ -123,18 +124,84 @@ plot(im)
 px <- im > .3 & (Xc(img) %inr% c(26,615)) & (Yc(img) %inr% c(41,448))
 highlight(px)
 
+
+plot(im2)
+px2 <- im2 > .3 & (Xc(im2) %inr% c(26,615)) & (Yc(im2) %inr% c(41,448))
+highlight(px2)
+View(im)
+View(px)
+plot(px)
+px
+img
+
+plot(im)
+plot(split_connected(px))
+plot(px)
+
+
+
+
 #Boundary
 boundary(px) %>% plot
 plot(im)
 boundary(px) %>% where %$% { points(x,y,cex=.1,col="red") }
 
-
+im <- im & px
+plot(im)
+plot(px)
+dfpx<-as.data.frame(px)
+View(dfpx)
+View(im)
 
 ##The actual thing...
 
 img <- load.image("0101_baseline_anterior.jpg") %>% grayscale
-plot(img)
+plot(im3)
 imsub(img,x %inr% c(26,615),y %inr% c(41,440)) %>% plot
-px <- (Xc(img) %inr% c(26,615)) & (Yc(img) %inr% c(41,440))
+
+
 highlight(px)
-get.centers(img,"99.9%") %$% points(mx,my,col="red")
+get.centers(im3,"99%") %$% points(mx,my,col="red")
+
+msk <- px.flood(parrots,100,100,sigma=.28) %>% as.cimg
+plot(parrots*msk)
+get.locations(im, im > .3)
+
+View(im)
+
+
+View(dfim)
+View(dfpx)
+dfim$x
+
+
+dfim<-as.data.frame(im)
+dfpx<-as.data.frame(px)
+intersect<-paste0(dfim$x,dfim$y) %in% paste0(dfpx$x,dfpx$y)
+intersect
+bwint<-as.integer(intersect)
+bwint
+
+bwint<-as.integer(px[,,1,1])
+dfim2<-dfim
+dfim2$value<-dfim2$value*bwint
+
+
+View(dfim2)
+im3<-as.cimg(dfim2)
+plot(im3)
+
+bwint<-as.integer(px[,,1,1])
+bwint
+length(im[,,1,1])
+
+
+
+
+
+
+
+
+
+
+
