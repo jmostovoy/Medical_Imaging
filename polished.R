@@ -36,8 +36,6 @@ plot(hessdet(im,6),main="Determinant of the Hessian at scale 1")
 
 #Get a data.frame with results at scale 2, 3 and 4
 dat <- ldply(c(2,3,4),function(scale) hessdet(im,scale) %>% as.data.frame %>% mutate(scale=scale))
-p <- ggplot(dat,aes(x,y))+geom_raster(aes(fill=value))+facet_wrap(~ scale)
-p+scale_x_continuous(expand=c(0,0))+scale_y_continuous(expand=c(0,0),trans=scales::reverse_trans())
 
 #Data across scales
 scales <- seq(2,20,l=10)
@@ -57,7 +55,6 @@ regs <- dplyr::group_by(labs,value) %>% dplyr::summarise(mx=mean(x),my=mean(y),s
 p <- ggplot(as.data.frame(im),aes(x,y))+geom_raster(aes(fill=value))+geom_point(data=regs,aes(mx,my,size=scale.index),pch=2,col="red")
 p+scale_fill_gradient(low="black",high="white")+scale_x_continuous(expand=c(0,0))+scale_y_continuous(expand=c(0,0),trans=scales::reverse_trans())
 
-as.data.frame(i.max)$value
 
 #Convert to EBImage
 img<-Image(im[,,1,1])
