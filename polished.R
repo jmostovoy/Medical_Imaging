@@ -6,9 +6,6 @@ plot(im)
 minimum <- .3
 px <- im > minimum & (Xc(im) %inr% c(26,615)) & (Yc(im) %inr% c(41,448))
 highlight(px)
-px2<-im > mean(im)*2
-highlight(px2)
-mean(im)
 
 #Set all unecessary data to a value of zero
 bwint<-as.integer(px[,,1,1])
@@ -24,8 +21,26 @@ fg <- (threshold(im.c,"75%"))
 imlist(fg,bg) %>% plot(layout="row")
 seed <- bg+2*fg
 plot(seed)
-plot(seed*bwint)
-im<-seed*bwint*im
+smthg<-seed*bwint
+smthg[,,1,1]<-ifelse(smthg[,,1,1]<1, 0, 1)
+smthg<-bucketfill(smthg,639, 1, color=c(1),sigma=0.3)
+smthg[,,1,1]<-ifelse(smthg[,,1,1]>0, 0, 1)
+plot(smthg)
+View(smthg[,,1,1])
+
+
+
+get.centers <- function(img2,thr="99%")
+{
+  dt <- imhessian(img2) %$% { -xx*yy + xy^2 } %>% threshold(thr) %>% label
+  as.data.frame(dt) %>% subset(value>0) %>% dplyr::group_by(value) %>% dplyr::summarise(mx=mean(x),my=mean(y))
+}
+
+plot(im)
+get.centers(img2,"99.9%") %$% points(mx,my,col="red")
+
+#Extra de-noising step:
+
 
 #### Tests ####
 
@@ -59,11 +74,29 @@ p+scale_fill_gradient(low="black",high="white")+scale_x_continuous(expand=c(0,0)
 #Convert to EBImage
 img<-Image(im[,,1,1])
 display(img)
+mean(!img==0)
+img=ifelse(img==0, mean(!img==0), img)
+display(img)
+im<-as.cimg(img@.Data)
+
+#filters
 w = matrix(1, nrow = 11, ncol = 11)
 w[3:9,3:9] = -1.4693877551
 w2<-matrix(1, nrow = 5, ncol = 5)
 w2[2:4,2:4]<-0
 imgf = filter2(img, w)
 display(imgf)
+imgf<-as.cimg(imgf@.Data)
+plot(imgf*seed*bwint)
 img2<-as.cimg(imgf@.Data)
 
+#Convert 2
+
+img2<-Image(smthg[,,1,1])
+w = makeBrush(size = 11, shape = "disc", sigma = 2)
+imgf2 = filter2(img2, w)
+display(imgf2)
+imgf2 = ifelse(imgf2<mean(imgf2), 0, imgf2)
+imgf2 = ifelse(imgf2>max(imgf2)/2, 1, 0)
+display(imgf2)
+img2<-as.cimg(imgf2@.Data)
