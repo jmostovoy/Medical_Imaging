@@ -16,8 +16,8 @@ plot(im)
 d <- as.data.frame(im)
 m <- sample_n(d,1e4) %>% lm(value ~ x*y,data=.) 
 im.c <- im-predict(m,d)
-bg <- (!threshold(im.c,"25%"))
-fg <- (threshold(im.c,"75%"))
+bg <- (!threshold(im.c,"20%"))
+fg <- (threshold(im.c,"76.5%"))
 imlist(fg,bg) %>% plot(layout="row")
 seed <- bg+2*fg
 plot(seed)
@@ -45,3 +45,7 @@ get.centers <- function(img2,thr="99%")
 
 plot(im)
 get.centers(img2,"99.9%") %$% points(mx,my,col="red")
+
+img2.denoised <- isoblur(img2,2)
+plot(im)
+get.centers(img2.denoised,"99%") %$% points(mx,my,col="red")
