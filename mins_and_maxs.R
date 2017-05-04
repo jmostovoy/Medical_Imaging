@@ -108,7 +108,6 @@ p+scale_fill_gradient(low="black",high="white")+scale_x_continuous(expand=c(0,0)
 im <- load.image("0101_baseline_anterior.jpg") %>% grayscale
 im2 <-load.image("0101_baseline_anterior2.jpg") %>% grayscale
 #Select pixels with high luminance
-px <- im > .3 & (Xc(img) %inr% c(26,615)) & (Yc(img) %inr% c(41,440))
 
 plot(px)
 sum(px)
@@ -197,6 +196,51 @@ length(im[,,1,1])
 
 
 
+
+#Coin Example
+im <- load.example("coins")
+plot(im)
+
+#Thresholding
+threshold(im) %>% plot
+
+#Correct with linear model
+d <- as.data.frame(im)
+##Subsamble, fit a linear model
+m <- sample_n(d,1e4) %>% lm(value ~ x*y,data=.) 
+##Correct by removing the trend
+im.c <- im-predict(m,d)
+out <- threshold(im.c)
+plot(out)
+
+#Correct more
+out <- clean(out,3) %>% imager::fill(7)
+plot(im)
+highlight(out)
+
+#Watershed approach
+d <- as.data.frame(im)
+m <- sample_n(d,1e4) %>% lm(value ~ x*y,data=.) 
+im.c <- im-predict(m,d)
+bg <- (!threshold(im.c,"25%"))
+fg <- (threshold(im.c,"75%"))
+imlist(fg,bg) %>% plot(layout="row")
+seed <- bg+2*fg
+plot(seed)
+
+
+edges <- imgradient(im,"xy") %>% enorm
+p <- 1/(1+edges)
+plot(p)
+
+ws <- (watershed(seed,p)==1)
+plot(ws)
+
+ws <- bucketfill(ws,1,1,color=2) %>% {!( . == 2) }
+plot(ws)
+clean(ws,5) %>% plot
+split_connected(ws) %>% purrr::discard(~ sum(.) < 100) %>%
+  parany %>% plot
 
 
 
