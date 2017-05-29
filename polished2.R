@@ -1,16 +1,17 @@
 #Load and view sample data
 im <- load.image("0101_baseline_anterior.jpg") %>% grayscale
-plot(im)
 
 #Delete all unecessary data and show on graph
 minimum <- .3
 px <- im > minimum & (Xc(im) %inr% c(26,615)) & (Yc(im) %inr% c(41,448))
-highlight(px)
 
 #Set all unecessary data to a value of zero
 bwint<-as.integer(px[,,1,1])
 im[,,1,1]<-bwint*im[,,1,1]
 plot(im)
+im
+mean(im!=0)
+im<-im*0.5890983/0.6140788
 
 #
 d <- as.data.frame(im)
@@ -22,8 +23,11 @@ imlist(fg,bg) %>% plot(layout="row")
 seed <- bg+2*fg
 plot(seed)
 smthg<-seed*bwint
+plot(smthg)
 smthg[,,1,1]<-ifelse(smthg[,,1,1]<1, 0, 1)
+plot(smthg)
 smthg<-bucketfill(smthg,639, 1, color=c(1),sigma=0.3)
+plot(smthg)
 smthg[,,1,1]<-ifelse(smthg[,,1,1]>0, 0, 1)
 plot(smthg)
 View(smthg[,,1,1])
